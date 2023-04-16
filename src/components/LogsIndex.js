@@ -1,6 +1,4 @@
-// import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
-import LogSingle from "./LogSingle";
 import axios from "axios";
 const API = process.env.REACT_APP_API_URL;
 console.log(API);
@@ -26,16 +24,16 @@ export default function LogsIndex() {
     return (
         <div className="LogsIndex">
             <ul>
-                {
-                    logs.map((log, index) => {
-                        // console.log(log);
-                        return (
-                            <LogSingle 
-                            key={log.title} 
-                            index={index}
-                            log={log} />
-                        )
-                    })
+                {logs.map((log, index) => {
+                    // console.log(log);
+                    return (
+                        <li key={index} className="Log">
+                            <a href={`/logs/${index}`}>
+                                {log.title}
+                            </a>
+                        </li>
+                    )
+                })
                 }
             </ul>
         </div>

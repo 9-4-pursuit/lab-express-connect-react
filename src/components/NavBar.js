@@ -8,4 +8,4 @@ export default function NavBar() {
             <Link to="/logs/new">New Log</Link>
         </div>
     )
-}
+};
