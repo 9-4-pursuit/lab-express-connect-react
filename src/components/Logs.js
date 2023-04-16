@@ -16,13 +16,25 @@ export default function Logs() {
 
   return(<div className="logs"> 
     <h2>Index</h2>
-    <ul>
-      {logs.map((log, index) => {
-        return (<li key={index} className="Log">
-          <a href={`/logs/${index}`}> {log.title}</a>
-        </li>)
-      })}
-    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Mistakes</th>
+          <th>Captain Name</th>
+          <th>See this log</th>
+        </tr>
+      </thead>
+      <tbody>
+        {logs.map((log, index) => {
+          return (<tr key={index} className="Log">
+            <td>{`${log.mistakesWereMadeToday}`}</td>
+            <td>{log.captainName}</td>
+            <td><a href={`/logs/${index}`}> {log.title}</a></td>
+          </tr>)
+        })}
+      </tbody>
+    </table>
     
   </div>);
 }
