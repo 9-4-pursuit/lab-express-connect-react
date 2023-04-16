@@ -15,7 +15,7 @@ export default function Logs() {
   }, []);
 
   return(<div className="logs"> 
-    <h2>Index</h2>
+    <h1>Index</h1>
 
     <table>
       <thead>
