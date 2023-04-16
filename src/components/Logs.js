@@ -15,9 +15,10 @@ export default function Logs() {
   }, []);
 
   return(<div className="logs"> 
+    <h2>Index</h2>
     <ul>
       {logs.map((log, index) => {
-        return (<li key={index}>
+        return (<li key={index} className="Log">
           <a href={`/logs/${index}`}> {log.title}</a>
         </li>)
       })}
