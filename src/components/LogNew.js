@@ -1,59 +1,89 @@
-// import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
-
+import axios from "axios";
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+const API = process.env.REACT_APP_API_URL;
+
 
 export default function LogNew() {
     const navigate = useNavigate();
+    const [log, setlog] = useState({
+        captainName: "",
+        title: "",
+        post: "",
+        mistakesWereMadeToday: false,
+        daysSinceLastCrisis: 0,
+    });
+
+    const handleTextChange = (event) => {
+        setlog({ ...log, [event.target.id]: event.target.value });
+    };
+
+    const handleCheckboxChange = () => {
+        setlog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
+    };
+
+    const addLog = (newLog) => {
+        axios
+            .post(`${API}/logs`, newLog)
+            .then(() => navigate("/logs"))
+            .catch((err) => console.error(err))
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        addLog(log);
+    };
+
     return (
         <div className="LogNew">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="captainName">Captain's Name:</label>
                 <input
-                    id="name"
-                    value={bookmark.name}
+                    id="captainName"
+                    value={log.captainName}
                     type="text"
                     onChange={handleTextChange}
-                    placeholder="Name of Website"
+                    placeholder="Your name please, Captain."
                     required
                 />
-                <label htmlFor="url">URL:</label>
+                <br />
+                <label htmlFor="title">Title:</label>
                 <input
-                    id="url"
+                    id="title"
                     type="text"
-                    pattern="http[s]*://.+"
+                    value={log.title}
+                    placeholder="Today's log title."
+                    onChange={handleTextChange}
                     required
-                    value={bookmark.url}
-                    placeholder="http://"
-                    onChange={handleTextChange}
                 />
-                <label htmlFor="category">Category:</label>
+                <br />
+                <label htmlFor="post">Post:</label>
                 <input
-                    id="category"
+                    id="post"
                     type="text"
-                    name="category"
-                    value={bookmark.category}
-                    placeholder="educational, inspirational, ..."
+                    value={log.post}
+                    placeholder="What occurred on this day?"
                     onChange={handleTextChange}
                 />
-                <label htmlFor="isFavorite">Favorite:</label>
+                <br />
+                <label htmlFor="daysSinceLastCrisis">Days since last crisis:</label>
                 <input
-                    id="isFavorite"
+                    id="daysSinceLastCrisis"
+                    type="number"
+                    value={log.daysSinceLastCrisis}
+                    onChange={handleTextChange}
+                />
+                <br />
+                <label htmlFor="mistakesWereMadeToday">Mistakes were made today:</label>
+                <input
+                    id="mistakesWereMadeToday"
                     type="checkbox"
                     onChange={handleCheckboxChange}
-                    checked={bookmark.isFavorite}
-                />
-                <label htmlFor="description">Description:</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    value={bookmark.description}
-                    onChange={handleTextChange}
-                    placeholder="Describe why you bookmarked this site"
+                    checked={log.mistakesWereMadeToday}
                 />
                 <br />
                 <input type="submit" />
             </form>
         </div>
     )
-}
+};
