@@ -17,6 +17,16 @@ export default function LogEdit() {
         daysSinceLastCrisis: 0,
     });
 
+    useEffect(() => {
+        axios
+        .get(`${API}/logs/${index}`)
+        .then((res) => {
+            setlog(res.data);
+            console.log(res.data);
+        })
+        .catch((err) => console.error(err))
+    }, [index]);
+
     const handleTextChange = (event) => {
         setlog({ ...log, [event.target.id]: event.target.value });
     };
@@ -35,20 +45,10 @@ export default function LogEdit() {
         .put(`${API}/logs/${index}`, log)
         .then((res) => {
             setlog(res.data);
-            navigate(`logs/${index}`);
+            navigate(`/logs/${index}`);
         })
         .catch((err) => console.warn("warn", err))
     };
-
-    useEffect(() => {
-        axios
-        .get(`${API}/logs/${index}`)
-        .then((res) => {
-            setlog(res.data);
-            console.log(res.data);
-        })
-        .catch((err) => console.error(err))
-    }, [index]);
 
 
     return (
@@ -100,6 +100,9 @@ export default function LogEdit() {
                 />
                 <br />
                 <input type="submit" />
+                <br />
+                <br />
+<a href="/logs">Back</a>
             </form>
         </div>
     )
