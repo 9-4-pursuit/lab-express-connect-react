@@ -33,4 +33,4 @@ export default function LogSingle() {
             <Link to={`/logs/${index}/edit`}>Edit</Link>
         </div>
     )
-}
+};

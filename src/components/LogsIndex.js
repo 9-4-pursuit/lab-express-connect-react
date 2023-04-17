@@ -23,19 +23,22 @@ export default function LogsIndex() {
 
     return (
         <div className="LogsIndex">
-            <ul>
+            <div>
                 {logs.map((log, index) => {
                     // console.log(log);
                     return (
-                        <li key={index} className="Log">
-                            <a href={`/logs/${index}`}>
-                                {log.title}
-                            </a>
-                        </li>
+                        <>
+                            <td>{log.captainName}</td>
+                            <li key={index} className="Log">
+                                <a href={`/logs/${index}`}>
+                                    {log.title}
+                                </a>
+                            </li>
+                        </>
                     )
                 })
                 }
-            </ul>
+            </div>
         </div>
     )
 }
