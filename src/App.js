@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 
-import NavBar from "./Components/Common/NavBar.jsx";
-import Home from "./Components/Pages/Home.jsx";
-import Index from "./Components/Pages/Index.jsx";
-import NewLog from "./Components/Pages/NewLog.jsx";
-import ShowLog from "./Components/Pages/ShowLog.jsx";
-import EditLog from "./Components/Pages/EditLog.jsx";
-import Error from "./Components/Pages/Error.jsx";
+import NavBar from "./Components/NavBar.jsx";
+import Home from "./Pages/Home.jsx";
+import Index from "./Pages/Index.jsx";
+import New from "./Pages/New.jsx";
+import Show from "./Pages/Show.jsx";
+import Edit from "./Pages/Edit.jsx";
+import Error from "./Pages/Error.jsx";
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/logs" element={<Index />} />
-          <Route path="/logs/new" element={<NewLog />} />
-          <Route path="/logs/:index" element={<ShowLog />} />
-          <Route path="/logs/:index/edit" element={<EditLog />} />
+          <Route path="/logs/new" element={<New />} />
+          <Route path="/logs/:index" element={<Show />} />
+          <Route path="/logs/:index/edit" element={<Edit />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </main>
