@@ -58,7 +58,7 @@ export default function LogNew() {
                 />
                 <br />
                 <label htmlFor="post">Post:</label>
-                <input
+                <textarea
                     id="post"
                     type="text"
                     value={log.post}
@@ -66,7 +66,7 @@ export default function LogNew() {
                     onChange={handleTextChange}
                 />
                 <br />
-                <label htmlFor="daysSinceLastCrisis">Days since last crisis:</label>
+                <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis:</label>
                 <input
                     id="daysSinceLastCrisis"
                     type="number"
