@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 const API = process.env.REACT_APP_API_URL
 
-
 export default function Logs() {
 
     const [logs, setLogs] = useState([])
@@ -9,9 +8,9 @@ export default function Logs() {
     useEffect(() => {
         fetch(`${API}/logs`)
         .then((res) => res.json())
-        .then((Response) => {
-            setLogs(Response)
-            console.log(Response)
+        .then((response) => {
+            setLogs(response)
+            console.log(response)
         })
         .catch((e) => console.log(e))
     }, [])

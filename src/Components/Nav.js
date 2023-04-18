@@ -4,10 +4,8 @@ export default function Nav() {
 
     return (
         <>
-        <h1>Captain's Log</h1>
-        <button>
-            <Link to="/">Home</Link>
-        </button>
+        <h1><a href={`/`}>Captain's Log</a></h1>
+        
         <button>
             <Link to="/logs">Logs</Link>
         </button>
