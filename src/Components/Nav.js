@@ -7,6 +7,9 @@ export default function Nav() {
         <h1><a href={`/`}>Captain's Log</a></h1>
         
         <button>
+            <Link to="/">Home</Link>
+        </button>
+        <button>
             <Link to="/logs">Logs</Link>
         </button>
         <button>

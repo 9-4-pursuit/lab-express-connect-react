@@ -55,16 +55,22 @@ export default function NewLog() {
       <h1>New Log</h1>
 
       <form onSubmit={handleSubmit}>
+      <tr>
         <label>
+          <td>
         Captain's Name:
           <input
+            placeholder='captainName'
             type="text"
             name="captainName"
             value={newLog.captainName}
             onChange={handleInputChange}
           />
+          </td>
         </label>
+        </tr>
 
+        <br /><br />
         <label>
           Title:
           <input
@@ -74,12 +80,12 @@ export default function NewLog() {
             onChange={handleInputChange}
           />
         </label>
-
+        <br /><br />
         <label>
           Post:
           <textarea name="post" value={newLog.post} onChange={handleInputChange} />
         </label>
-
+        <br /><br />
         <label>
           Mistakes Were Made Today:
           <input
@@ -89,7 +95,7 @@ export default function NewLog() {
             onChange={handleInputChange}
           />
         </label>
-
+        <br /><br />
         <label>
           Days Since Last Crisis:
           <input
@@ -99,7 +105,7 @@ export default function NewLog() {
             onChange={handleInputChange}
           />
         </label>
-
+        <br /><br />
         <button type="submit">Save</button>
         <button type="button" onClick={() => navigate('/logs')}>
           Cancel

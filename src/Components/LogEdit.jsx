@@ -44,9 +44,10 @@ export default function EditLog() {
       <h1>Edit Log</h1>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="captainName">
+        <label className="captainName" htmlFor="captainName">
         Captain's Name:
           <input
+          id="captainName"
             type="text"
             name="captainName"
             value={editedLog.captainName}
@@ -57,7 +58,8 @@ export default function EditLog() {
         <label>
           Days Since Last Crisis:
           <input
-            type="number"
+          id="daysSinceLastCrisis"
+          type="number"
             name="daysSinceLastCrisis"
             value={editedLog.daysSinceLastCrisis}
             onChange={handleInputChange}
@@ -65,9 +67,10 @@ export default function EditLog() {
         </label>
 
         <label htmlFor="mistakesWereMadeToday">
-          Mistakes Were Made Today:
+        Mistakes were made today:
           <input
-            type="checkbox"
+          id="mistakesWereMadeToday"
+          type="checkbox"
             name="mistakesWereMadeToday"
             checked={editedLog.mistakesWereMadeToday}
             onChange={handleInputChange}
@@ -77,6 +80,7 @@ export default function EditLog() {
         <label>
           Title:
           <input
+          id="title"
             type="text"
             name="title"
             value={editedLog.title}
@@ -84,14 +88,14 @@ export default function EditLog() {
           />
         </label>
 
-        <label>
-          Post:
+        <label>Post:</label>
           <textarea
+          id="post"
             name="post"
             value={editedLog.post}
             onChange={handleInputChange}
           />
-        </label>
+        
 
         <button type="submit">Save</button>
         <button type="button" onClick={() => navigate(`/logs/${index}`)}>
