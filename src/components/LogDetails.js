@@ -11,33 +11,24 @@ export default function LogDetails() {
   useEffect(() => {
     axios
     .get(`${API}/logs/${index}`)
-    .then((response) => setLog(response.data))
-    .catch(() => {
-      navigate('/not-found')
-    })
-  }, [index, navigate]);
+    .then(response => setLog(response.data))
+    .catch((error) => console.error(error))
+  }, [index]);
 
   const handleDelete = () => {
     axios
     .delete(`${API}/logs/${index}`)
-    .then(() => navigate(`/logs`))
+    .then(() => navigate('/logs'))
     .catch((e) => console.error(e))
   };
   
   return (
     <article>
       <h3>
-        {log.mistakesWereMadeToday ? <span>⭐️</span> : null} {log.name}
+        {log.mistakesWereMadeToday ? <span>💥</span> : null} {log.captainName}
       </h3>
-      <h5>
-        <span>
-          <a href={log.url}>{log.name}</a>
-        </span>{" "}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {log.url}
-      </h5>
-      <h6>{log.category}</h6>
-      <p>{log.description}</p>
+      <h4>{log.title}</h4>
+      <p>{log.post}</p>
       <div className="showNavigation">
         <div>
           {" "}
