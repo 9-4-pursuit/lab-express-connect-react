@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
 import Log from "./Log";
-// import axios from "axios";
-// const API = process.env.REACT_APP_API_URL;
+import { useState, useEffect } from "react";
+import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
 
 export default function Logs() {
+
   const [logs, setLogs] = useState([]);
 
-//   useEffect(() => {
-//     axios
-//     .get(`${API}/logs`)
-//     .then((response) => setLogs(response.data))
-//     .catch((err) => console.error('catch', err))
-//   }, []);
-
+  useEffect(() => {
+    axios
+    .get(`${API}/logs`)
+    .then((response) => setLogs(response.data))
+    .catch((err) => console.error('catch', err))
+  }, []);
 
   return (
     <div className="Logs">
@@ -20,8 +20,8 @@ export default function Logs() {
         <table>
           <thead>
             <tr>
-              <th></th>
-              <th>Take me there</th>
+              <th>Mistakes</th>
+              <th>Captain Name</th>
               <th>See this log</th>
             </tr>
           </thead>

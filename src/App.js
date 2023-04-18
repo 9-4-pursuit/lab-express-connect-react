@@ -7,6 +7,7 @@ import Show from "./pages/Show";
 import Edit from "./pages/Edit";
 
 function App() {
+
   return (
     <div>
       <BrowserRouter>
@@ -14,7 +15,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/logs" element={<Index />} />
+            <Route path="/logs" element={<Index />}  />
             <Route path="/logs/new" element={<New />} />
             <Route path="/logs/:index" element={<Show />} />
             <Route path="/logs/:index/edit" element={<Edit />} />
