@@ -28,7 +28,6 @@ export default function LogsIndex() {
                     // console.log(log);
                     return (
                         <>
-                            <td>{log.captainName}</td>
                             <li key={index} className="Log">
                                 <a href={`/logs/${index}`}>
                                     {log.title}

@@ -19,6 +19,14 @@ export default function LogSingle() {
             .catch((err) => console.error(err))
     }, [index, navigate]);
 
+    const handleDelete = () => {
+        axios.delete(`${API}/logs/${index}`)
+            .then(() => {
+                navigate("/logs");
+            })
+            .catch((err) => console.error(err))
+    };
+
 
     return (
         <div className="Log">
@@ -31,6 +39,8 @@ export default function LogSingle() {
             <Link to="/logs">Back</Link>
             <br></br>
             <Link to={`/logs/${index}/edit`}>Edit</Link>
+            <br />
+            <button onClick={handleDelete}>Delete</button>
         </div>
     )
 };

@@ -5,6 +5,7 @@ const API = process.env.REACT_APP_API_URL;
 
 
 export default function LogNew() {
+    
     const navigate = useNavigate();
     const [log, setlog] = useState({
         captainName: "",
