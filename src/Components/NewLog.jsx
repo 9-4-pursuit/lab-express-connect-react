@@ -8,7 +8,6 @@ export default function NewLog() {
   const navigate = useNavigate();
 
   const [newLog, setNewLog] = useState({
-    id: null, // add id property to state object
     captainName: '',
     title: '',
     post: '',
