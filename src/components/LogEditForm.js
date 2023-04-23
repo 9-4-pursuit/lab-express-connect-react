@@ -34,9 +34,9 @@ export default function LogEditForm() {
     setLog({...log, daysSinceLastCrisis: +event.target.value});
   }
 
-  const editLog = (newLog) => {
+  const editLog = () => {
     axios
-    .post(`${API}/logs`, newLog)
+    .put(`${API}/logs/${index}`, log)
     .then(() => {
       navigate(`/logs/${index}`);
     })
@@ -96,6 +96,7 @@ export default function LogEditForm() {
         onChange={handleCheckboxChange}/>
 
       <input type="submit"/>
+      <Link to="/logs"><button>Back</button></Link>
     </form>
   </div>);
 }
