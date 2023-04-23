@@ -62,7 +62,7 @@ LogNewForm() {
 
       <label 
         htmlFor="post">Post:</label>
-      <input 
+      <textarea 
         type="text" 
         placeholder="What happened today?" 
         id="post"
@@ -84,7 +84,7 @@ LogNewForm() {
       <input 
         type="checkbox"  
         id="mistakesWereMadeToday"
-        value={log.mistakesWereMadeToday}
+        checked={log.mistakesWereMadeToday}
         onChange={handleCheckboxChange}/>
 
       <input type="submit"/>
