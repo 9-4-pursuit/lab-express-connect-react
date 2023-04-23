@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom"
+import "./Navbar.css"
 
 export default function Navbar() {
   return(<nav className="navbar">
     <NavLink to="/logs"><h1>Captain's Log</h1></NavLink>
-    <button className="new"><NavLink to="/logs/new">New Log</NavLink></button>
+    <NavLink to="/logs/new"><button className="new">New Log</button></NavLink>
   </nav>)
 }
