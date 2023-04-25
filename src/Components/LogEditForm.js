@@ -1,75 +1,94 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
+
 
 function LogEditForm() {
   let { index } = useParams();
+  const navigate = useNavigate() 
 
   const [Log, setLog] = useState({
-    name: "",
-    url: "",
-    category: "",
-    description: "",
-    isFavorite: false,
+    captainName: "",
+    title: "",
+    post: "",
+    mistakesWereMadeToday: false,
+    daysSinceLastCrisis: 0,
   });
+
+  useEffect(() => {
+    axios
+    .get(`${API}/Logs/${index}`)
+    .then((response) =>{
+      setLog(response.data);
+    }).catch((error) => console.warn("warn", error))
+  }, [index]);
+
+
 
   const handleTextChange = (event) => {
     setLog({ ...Log, [event.target.id]: event.target.value });
   };
 
   const handleCheckboxChange = () => {
-    setLog({ ...Log, isFavorite: !Log.isFavorite });
+    setLog({ ...Log, mistakesWereMadeToday: !Log.mistakesWereMadeToday });
   };
 
-  useEffect(() => {}, []);
+  function editLog() {
+    axios 
+    .put(`${API}/Logs/${index}`, Log)
+    .then((response)=>{
+      setLog(response.data)
+      navigate(`/Logs/${index}`)
+    }).catch((error) => console.warn("warn", error))}
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    editLog()
+
+
   };
   return (
     <div className="Edit">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="captainName">Captain's Name:</label>
         <input
-          id="name"
-          value={Log.name}
+          id="captainName"
+          value={Log.captainName}
           type="text"
           onChange={handleTextChange}
-          placeholder="Name of Website"
           required
         />
-        <label htmlFor="url">URL:</label>
+        <label htmlFor="title">Title:</label>
         <input
-          id="url"
+          id="title"
           type="text"
-          pattern="http[s]*://.+"
           required
-          value={Log.url}
-          placeholder="http://"
+          value={Log.title}
           onChange={handleTextChange}
         />
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="post">Post:</label>
         <input
-          id="category"
+          id="post"
           type="text"
-          name="category"
-          value={Log.category}
-          placeholder="educational, inspirational, ..."
+          value={Log.post}
+          placeholder="What happened today?"
           onChange={handleTextChange}
         />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="daysSinceLastCrisis"> Days Since Last Crisis:</label>
         <input
-          id="isFavorite"
-          type="checkbox"
-          onChange={handleCheckboxChange}
-          checked={Log.isFavorite}
+          id="daysSinceLastCrisis"
+          type="number"
+          onChange={handleTextChange}
+          checked={Log.daysSinceLastCrisis}
         />
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="mistakesWereMadeToday">Mistakes Were Made Today:</label>
         <textarea
-          id="description"
-          name="description"
-          value={Log.description}
-          onChange={handleTextChange}
-          placeholder="Describe why you Loged this site"
+          id="mistakesWereMadeToday"
+          type="checkbox"
+          value={Log.mistakesWereMadeToday}
+          onChange={handleCheckboxChange}
+          
         />
         <br />
 

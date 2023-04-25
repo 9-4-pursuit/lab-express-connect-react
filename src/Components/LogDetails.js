@@ -1,36 +1,54 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
 
-function BookmarkDetails() {
-  const [bookmark] = useState([]);
+function LogDetails() {
+  const [Log, setLog] = useState([]);
   let { index } = useParams();
+  const navigate = useNavigate();
+  const {captainName, title, post, mistakesWereMadeToday, daysSinceLastCrisis} = Log
 
-  useEffect(() => {}, []);
-  const handleDelete = () => {};
+//get
+  useEffect(() => {
+    axios
+    .get(`${API}/Logs/${index}`)
+    .then(response => {
+      setLog(response.data)
+    }).catch(error => console.warn("warn", error))
+  }, [index]);
+
+//delete
+  const handleDelete = () => {
+    axios
+    .delete(`${API}/logs/${index}`)
+    .then(()=>{
+      navigate("/logs")
+    })
+    .catch((error) => console.warn("warn", error))
+  };
+
+
   return (
     <article>
       <h3>
-        {bookmark.isFavorite ? <span>⭐️</span> : null} {bookmark.name}
+        {title} - By {captainName}
       </h3>
       <h5>
-        <span>
-          <a href={bookmark.url}>{bookmark.name}</a>
-        </span>{" "}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {bookmark.url}
+       {post}
       </h5>
-      <h6>{bookmark.category}</h6>
-      <p>{bookmark.description}</p>
+      <h6> Mistakes made today: {mistakesWereMadeToday}</h6>
+      <p>Days since last crisis: {daysSinceLastCrisis}</p>
       <div className="showNavigation">
         <div>
           {" "}
-          <Link to={`/bookmarks`}>
+          <Link to={`/Logs`}>
             <button>Back</button>
           </Link>
         </div>
         <div>
           {" "}
-          <Link to={`/bookmarks/${index}/edit`}>
+          <Link to={`/Logs/${index}/edit`}>
             <button>Edit</button>
           </Link>
         </div>
@@ -43,4 +61,4 @@ function BookmarkDetails() {
   );
 }
 
-export default BookmarkDetails;
+export default LogDetails;

@@ -1,22 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Log({ log, index }) {
+  const {captainName, title, mistakesWereMadeToday} = useParams();
+
   return (
     <tr>
       <td>
-        {log.isFavorite ? (
+        {mistakesWereMadeToday ? (
           <span>⭐️</span>
         ) : (
           <span>&nbsp; &nbsp; &nbsp;</span>
         )}
       </td>
       <td>
-        <a href={log.url} target="_blank" rel="noreferrer">
-          {Log.name}
-        </a>
+
+        {captainName}
+        
       </td>
       <td>
-        <Link to={`/logs/${index}`}>✏️</Link>
+        <Link to={`/Logs/${index}`}>{title}</Link>
       </td>
     </tr>
   );

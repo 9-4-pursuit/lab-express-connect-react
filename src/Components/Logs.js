@@ -21,14 +21,14 @@ function Logs() {
         <table>
           <thead>
             <tr>
-              <th></th>
-              <th>Take me there</th>
-              <th>See this Log</th>
+              <th>Mistakes</th>
+              <th>Captain Name</th>
+              <th>See this log</th>
             </tr>
           </thead>
           <tbody>
-            {Logs.map((Log, index) => {
-              return <Log key={index} Log={Log} index={index} />;
+            {Logs.map((log, index) => {
+              return <Log key={index} Log={log} index={index} />;
             })}
           </tbody>
         </table>
