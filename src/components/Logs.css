@@ -1,0 +1,24 @@
+.logs thead tr th{
+  text-align: start;
+  font-size: large;
+  border-bottom: 2px solid lightgray;
+}
+
+.logs table {
+  border-radius: 5%;
+  border-spacing: 0;
+  margin: auto;
+  padding: 20px;
+  width: 70%;
+  background-color: #EEF9FB;
+}
+
+.logs table tr td{
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid lightblue;
+}
+
+.logs h1{
+  margin-left: 30px;
+}

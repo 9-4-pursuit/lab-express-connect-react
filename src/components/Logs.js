@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./Logs.css"
 const API = process.env.REACT_APP_API_URL
 console.log(API);
-
 
 export default function Logs() {
   const [logs, setLogs] = useState([]);
