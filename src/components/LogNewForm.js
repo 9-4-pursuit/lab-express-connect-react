@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LogNewForm.css"
 const API = process.env.REACT_APP_API_URL;
 
 export default function
@@ -50,6 +51,7 @@ LogNewForm() {
         type="text" 
         id="captainName"
         value={log.captainName}
+        className="input"
         onChange={handleTextChange}/>
 
       <label 
@@ -58,6 +60,7 @@ LogNewForm() {
         type="text" 
         id="title"
         value={log.title}
+        className="input"
         onChange={handleTextChange}/>
 
       <label 
@@ -67,6 +70,7 @@ LogNewForm() {
         placeholder="What happened today?" 
         id="post"
         value={log.post}
+        className="input"
         onChange={handleTextChange}/>
 
       <label 
@@ -77,6 +81,7 @@ LogNewForm() {
         placeholder={0}
         id="daysSinceLastCrisis"
         value={log.daysSinceLastCrisis}
+        className="input"
         onChange={handleNumberChange}/>
 
       <label 
@@ -85,9 +90,10 @@ LogNewForm() {
         type="checkbox"  
         id="mistakesWereMadeToday"
         checked={log.mistakesWereMadeToday}
+        className="checkbox"
         onChange={handleCheckboxChange}/>
 
-      <input type="submit"/>
+      <input className="submit" type="submit"/>
     </form>
   </div>);
 }
