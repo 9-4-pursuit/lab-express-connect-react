@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Log.css"
 const API = process.env.REACT_APP_API_URL;
 
 export default function Log() {
@@ -35,8 +36,11 @@ export default function Log() {
       <p><b>Days since last crisis: </b>{log.daysSinceLastCrisis}</p>
     </article>
     
-    <Link to="/logs"><button className="back">Back</button></Link>
-    <Link to={`/logs/${index}/edit`}><button className="edit">Edit</button></Link>
-    <button className="delete" onClick={handleDelete}>Delete</button>
+    <aside>
+      <Link to="/logs"><button className="back">Back</button></Link>
+      <Link to={`/logs/${index}/edit`}><button className="edit">Edit</button></Link>
+      <button className="delete" onClick={handleDelete}>Delete</button>
+    </aside>
+    
   </div>);
 }
