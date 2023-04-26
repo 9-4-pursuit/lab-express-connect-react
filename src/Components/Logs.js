@@ -5,11 +5,11 @@ const API = process.env.REACT_APP_API_URL
 console.log(API, "Testing API");
 
 function Logs() {
-  const [Logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() =>{
     axios
-    .get(`${API}/Logs`)
+    .get(`${API}/logs`)
       .then((response)=> setLogs(response.data))
     .catch((e)=>{console.error("catch", e)})
   }, [])
@@ -23,12 +23,12 @@ function Logs() {
             <tr>
               <th>Mistakes</th>
               <th>Captain Name</th>
-              <th>See this log</th>
+              <th>Title</th>
             </tr>
           </thead>
           <tbody>
-            {Logs.map((log, index) => {
-              return <Log key={index} Log={log} index={index} />;
+            {logs.map((log, index) => {
+              return <Log key={index} log={log} index={index} />;
             })}
           </tbody>
         </table>

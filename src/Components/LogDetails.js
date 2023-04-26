@@ -4,15 +4,15 @@ import axios from "axios";
 const API = process.env.REACT_APP_API_URL;
 
 function LogDetails() {
-  const [Log, setLog] = useState([]);
+  const [log, setLog] = useState({});
   let { index } = useParams();
   const navigate = useNavigate();
-  const {captainName, title, post, mistakesWereMadeToday, daysSinceLastCrisis} = Log
+  const {captainName, title, post, mistakesWereMadeToday, daysSinceLastCrisis} = log
 
 //get
   useEffect(() => {
     axios
-    .get(`${API}/Logs/${index}`)
+    .get(`${API}/logs/${index}`)
     .then(response => {
       setLog(response.data)
     }).catch(error => console.warn("warn", error))
@@ -39,23 +39,21 @@ function LogDetails() {
       </h5>
       <h6> Mistakes made today: {mistakesWereMadeToday}</h6>
       <p>Days since last crisis: {daysSinceLastCrisis}</p>
-      <div className="showNavigation">
+      <div >
         <div>
-          {" "}
-          <Link to={`/Logs`}>
+          
+          <Link to={`/logs`}>
             <button>Back</button>
           </Link>
         </div>
         <div>
-          {" "}
-          <Link to={`/Logs/${index}/edit`}>
+          
+          <Link to={`/logs/${index}/edit`}>
             <button>Edit</button>
           </Link>
         </div>
-        <div>
-          {" "}
+        
           <button onClick={handleDelete}>Delete</button>
-        </div>
       </div>
     </article>
   );

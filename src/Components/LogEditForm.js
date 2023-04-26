@@ -8,7 +8,7 @@ function LogEditForm() {
   let { index } = useParams();
   const navigate = useNavigate() 
 
-  const [Log, setLog] = useState({
+  const [log, setLog] = useState({
     captainName: "",
     title: "",
     post: "",
@@ -18,7 +18,7 @@ function LogEditForm() {
 
   useEffect(() => {
     axios
-    .get(`${API}/Logs/${index}`)
+    .get(`${API}/logs/${index}`)
     .then((response) =>{
       setLog(response.data);
     }).catch((error) => console.warn("warn", error))
@@ -27,19 +27,19 @@ function LogEditForm() {
 
 
   const handleTextChange = (event) => {
-    setLog({ ...Log, [event.target.id]: event.target.value });
+    setLog({ ...log, [event.target.id]: event.target.value });
   };
 
   const handleCheckboxChange = () => {
-    setLog({ ...Log, mistakesWereMadeToday: !Log.mistakesWereMadeToday });
+    setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
   };
 
   function editLog() {
     axios 
-    .put(`${API}/Logs/${index}`, Log)
+    .put(`${API}/logs/${index}`, log)
     .then((response)=>{
       setLog(response.data)
-      navigate(`/Logs/${index}`)
+      navigate(`/logs/${index}`)
     }).catch((error) => console.warn("warn", error))}
 
   const handleSubmit = (event) => {
@@ -50,12 +50,13 @@ function LogEditForm() {
   };
   return (
     <div className="Edit">
+      
       <form onSubmit={handleSubmit}>
         <label htmlFor="captainName">Captain's Name:</label>
         <input
           id="captainName"
-          value={Log.captainName}
           type="text"
+          value={log.captainName}
           onChange={handleTextChange}
           required
         />
@@ -64,14 +65,13 @@ function LogEditForm() {
           id="title"
           type="text"
           required
-          value={Log.title}
+          value={log.title}
           onChange={handleTextChange}
         />
         <label htmlFor="post">Post:</label>
-        <input
+        <textarea
           id="post"
-          type="text"
-          value={Log.post}
+          value={log.post}
           placeholder="What happened today?"
           onChange={handleTextChange}
         />
@@ -80,13 +80,13 @@ function LogEditForm() {
           id="daysSinceLastCrisis"
           type="number"
           onChange={handleTextChange}
-          checked={Log.daysSinceLastCrisis}
+          value={log.daysSinceLastCrisis}
         />
-        <label htmlFor="mistakesWereMadeToday">Mistakes Were Made Today:</label>
-        <textarea
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today:</label>
+        <input
           id="mistakesWereMadeToday"
           type="checkbox"
-          value={Log.mistakesWereMadeToday}
+          value={log.mistakesWereMadeToday}
           onChange={handleCheckboxChange}
           
         />
@@ -94,8 +94,8 @@ function LogEditForm() {
 
         <input type="submit" />
       </form>
-      <Link to={`/Logs/${index}`}>
-        <button>Nevermind!</button>
+      <Link to={`/logs/${index}`}>
+        <button>Back</button>
       </Link>
     </div>
   );

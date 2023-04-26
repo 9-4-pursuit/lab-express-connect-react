@@ -1,15 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 
 function Log({ log, index }) {
-  const {captainName, title, mistakesWereMadeToday} = useParams();
+  const {captainName, title, mistakesWereMadeToday} = log;
 
   return (
-    <tr>
+    <tr className="Log">
       <td>
         {mistakesWereMadeToday ? (
-          <span>⭐️</span>
+          <span>💥</span>
         ) : (
-          <span>&nbsp; &nbsp; &nbsp;</span>
+          <span>""</span>
         )}
       </td>
       <td>
@@ -18,7 +18,7 @@ function Log({ log, index }) {
         
       </td>
       <td>
-        <Link to={`/Logs/${index}`}>{title}</Link>
+        <Link to={`/logs/${index}`}>{title}</Link>
       </td>
     </tr>
   );
