@@ -1,0 +1,29 @@
+nav{
+    display:flex;
+    flex-direction: row;
+    width:80%;
+    padding-left:10%;
+    padding-right: 10%;
+    background-image: url('https://media.istockphoto.com/id/1173451503/vector/space-background-with-realistic-nebula-and-shining-stars-colorful-cosmos-with-stardust-and.jpg?s=612x612&w=0&k=20&c=mEoyUd-7lXPnVzcDgN_LFdHTiGAnkzjlgtXEte9KMVc=');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:lightgrey;
+    align-items: center;
+    justify-content: space-between;
+}
+.title{
+    font-size:3em;
+}
+.navlink{
+    text-decoration: none;
+    color:lightgrey;
+    margin-left:20px;
+    font-size:larger;
+    font-weight: bold;
+}
+.navlink:hover{
+    color:green;
+    background-color: lightgrey;
+    padding:5px;
+    border-radius:5px;
+}
