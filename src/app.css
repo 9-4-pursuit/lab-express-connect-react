@@ -1,0 +1,7 @@
+HTML, body{
+    background-color: lightgrey;
+}
+main{
+    width:70%;
+    margin-left:15%;
+}
