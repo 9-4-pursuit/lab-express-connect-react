@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 
-function LogsEditForm() {
-  let { index } = useParams();
-
+function LogsNewForm() {
   const [log, setLog] = useState({
-    name: "",
-    url: "",
-    category: "",
-    description: "",
-    isFavorite: false,
+    captainName: "",
+    title: "",
+    post: "",
+    mistakesWereMadeToday: false,
+    daysSinceLastCrisis: "",
   });
-
   const handleTextChange = (event) => {
     setLog({ ...log, [event.target.id]: event.target.value });
   };
@@ -20,33 +16,59 @@ function LogsEditForm() {
     setLog({ ...log, isFavorite: !log.isFavorite });
   };
 
-  useEffect(() => {}, []);
-
   const handleSubmit = (event) => {
     event.preventDefault();
   };
   return (
-    <div className="Edit">
+    <div className="New">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="name">captainName:</label>
         <input
-          id="category"
+          id="name"
+          value={log.name}
           type="text"
-          name="category"
-          value={log.category}
-          placeholder="educational, inspirational, ..."
+          onChange={handleTextChange}
+          placeholder="Name of Captain"
+          required
+        />
+        <label htmlFor="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          value={log.url}
+          placeholder="Title"
+          onChange={handleTextChange}
+          required
+        />
+        <label htmlFor="post">Post:</label>
+        <input
+          id="post"
+          name="post"
+          type="text"
+          value={log.post}
           onChange={handleTextChange}
         />
-   
+        <label htmlFor="mistakesMade">mistakesWereMadeToday:</label>
+        <input
+          id="mistakeMade"
+          type="checkbox"
+          onChange={handleCheckboxChange}
+          checked={log.mistakeMade}
+        />
+        <label htmlFor="daysSince">daysSinceLastCrisis:</label>
+        <textarea
+          id="daysSince"
+          name="daysSince"
+          type="number"
+          value={log.daysSince}
+          onChange={handleTextChange}
+          placeholder="Days Since Last Crisis"
+        />
         <br />
-
         <input type="submit" />
       </form>
-      <Link to={`/logs/${index}`}>
-        <button>Nevermind!</button>
-      </Link>
     </div>
   );
 }
 
-export default LogsEditForm;
+export default LogsNewForm;

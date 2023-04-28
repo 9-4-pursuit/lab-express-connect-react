@@ -1,38 +1,39 @@
 import { useEffect, useState } from "react";
 import Log from "./Log";
-// import axios from "axios";
+import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
 // console.log(API, "Testing api")
 
 function Logs() {
   const [logs, setLogs] = useState([]);
-
   useEffect(() => {
-    fetch(`${API}/logs`)
-      .then((res) => res.json())
-      .then((response) => {
-        setLogs(response)
-        console.log(response)
-      })
-      .catch((e) => console.log(e))
-  }, [])
+    axios
+      .get(`${API}/logs`)
+      .then((response) => setLogs(response.data))
+      .catch((e) => console.error("catch", e));
+  }, []);
 
   return (
     <div className="Logs">
-      {logs.map((log, index) => {
-        return (
-          <div className="Log">
-            <h4><a href={`/logs/${index}`}>{log.captainName}</a></h4>
-            <p>{log.daysSinceLastCrisis}</p>
-            <p>{log.mistakesWereMadeToday}</p>
-            <p>{log.title}</p>
-            <p>{log.post}</p>
-          </div>
-        )
-      })}
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Take me there</th>
+              <th>See this log</th>
+            </tr>
+          </thead>
+          <tbody>
+            {logs.map((log, index) => {
+              return <Log key={index} log={log} index={index} />;
+            })}
+          </tbody>
+        </table>
+      </section>
     </div>
-  )
+  );
 }
 
 export default Logs;
