@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 const API = process.env.REACT_APP_API_URL
 
 
 function Logs() {
-
+    
     const [logs, setLogs] = useState([])
 
 useEffect(() => {
@@ -21,9 +22,11 @@ useEffect(() => {
 
     return (
         <>
-        <button>
-            <a href="/logs/new"> New Logs</a>
+        {logs[0] ? (
+            <button>
+            <Link to="/logs/new"> New Logs</Link>
         </button>
+        ) : ""}
         <table>
             <tbody>
         {logs.map((log, index) => {

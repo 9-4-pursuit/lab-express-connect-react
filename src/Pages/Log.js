@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams} from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 const API = process.env.REACT_APP_API_URL;
 
 export default function Log() {
   const { index } = useParams();
   const [log, setLog] = useState({});
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -18,6 +19,20 @@ export default function Log() {
   }, [index]);
 
 
+  const handleDelete = () => {
+
+    fetch(`${API}/logs/${index}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((res) => {
+      navigate(`/logs`)
+    }).catch((e) => console.log(e))
+  }
+
+
+
   // add back and delete button
   return (
     <>
@@ -28,20 +43,20 @@ export default function Log() {
       <p></p>
       <p>{log.post}</p>
 
+      <button onClick={handleDelete}>
+        Delete
+      </button>
+      
       <button>
         <a href="/logs">Back</a>
       </button>
-        
-      <button>
-        <a href="/logs">Delete</a>
-      </button>
 
-   
-        <a href="*"></a>
-    
       <button>
         <a href={`/logs/${index}/edit`}>Edit</a>
       </button>
+
+        
+   
         
 
     </>

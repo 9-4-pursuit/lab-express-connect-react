@@ -5,6 +5,7 @@ import Logs from "./Pages/Logs";
 import NavBar from "./Components/NavBar";
 import Log from "./Pages/Log";
 import EditLog from "./Pages/EditLog";
+import NewLog from "./Pages/NewLog"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route path="/logs" element={<Logs  />}/>
       <Route path="/logs/:index" element={<Log />}/>
       <Route path="/logs/:index/edit" element={<EditLog />} />
+      <Route path="/logs/new" element={<NewLog />} />
     </Routes>
   </Router>
   </div>
