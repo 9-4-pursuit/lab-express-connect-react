@@ -40,6 +40,6 @@ describe("Show Page", () => {
     cy.get("a").invoke("attr", "href").should("eq", "/logs");
   });
   it("has an 'Edit' link that takes us to '/logs/0/edit'", () => {
-    cy.get("a").eq(3).invoke("attr", "href").should("eq", "/logs/0/edit");
+    cy.get("a").eq(1).invoke("attr", "href").should("eq", "/logs/0/edit");
   });
 });
