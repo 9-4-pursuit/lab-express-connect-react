@@ -1,70 +1,74 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LogNewForm() {
+
   const [log, setLog] = useState({
-    name: "",
-    url: "",
-    category: "",
-    isFavorite: false,
-    description: "",
-  });
+    captainName: "",
+    title: "",
+    post: "",
+    mistakesWereMadeToday: false,
+    daysSinceLastCrisis: 0,
+  })
+
+  const navigate = useNavigate();
 
   const handleTextChange = (event) => {
     setLog({ ...log, [event.target.id]: event.target.value });
-  };
+  }
 
   const handleCheckboxChange = () => {
-    setLog({ ...log, isFavorite: !log.isFavorite });
-  };
+    setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
+    navigate('/logs');
+  }
+
   return (
     <div className="New">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="Captain's Name">Captain's Name:</label>
         <input
-          id="name"
-          value={log.name}
+          id="captainName"
+          value={log.captainName}
           type="text"
           onChange={handleTextChange}
-          placeholder="Name of Website"
+          placeholder="Name of Captain"
           required
         />
-        <label htmlFor="url">URL:</label>
+        <label htmlFor="title">Title:</label>
         <input
-          id="url"
+          id="title"
           type="text"
-          pattern="http[s]*://.+"
           required
-          value={log.url}
-          placeholder="http://"
+          value={log.title}
+          placeholder="Title"
           onChange={handleTextChange}
         />
-        <label htmlFor="category">Category:</label>
-        <input
-          id="category"
+        <label htmlFor="post">Post:</label>
+        <textarea
+          id="post"
           type="text"
-          name="category"
-          value={log.category}
-          placeholder="educational, inspirational, ..."
+          value={log.post}
+          placeholder=""
           onChange={handleTextChange}
         />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today:</label>
         <input
-          id="isFavorite"
+          id="mistakesWereMadeToday"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={log.isFavorite}
+          checked={log.mistakesWereMadeToday}
         />
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          value={log.description}
+        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis:</label>
+        <input
+          id="daysSinceLastCrisis"
+          type="number"
+          value={log.daysSinceLastCrisis}
           onChange={handleTextChange}
-          placeholder="Describe why you loged this site"
+          placeholder="0"
         />
         <br />
         <input type="submit" />

@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+
 
 export default function Log({ log, index }) {
   return (
@@ -13,10 +13,9 @@ export default function Log({ log, index }) {
       <td>
         {log.captainName}
       </td>
-      
-      <a href={`/logs/${index}`}>{log.title}</a>
-      
+      <td>
+        <a href={`/logs/${index}`}>{log.title}</a>
+      </td>
     </tr>
-    
-  );
+  )
 }
