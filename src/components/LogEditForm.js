@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
 
 export default function LogEditForm() {
 
@@ -30,11 +32,11 @@ export default function LogEditForm() {
 
   function updateLog() {
     axios.put(`${API}/logs/${index}`, log)
-      .then((response) => {
-        setLog(response.data)
-        navigate(`/logs/${index}`)
-      })
-      .catch((error) => console.warn("Error: PUT", error))
+    .then((response) => {
+        setLog(response.data);
+        navigate(`/logs/${index}`);
+    })
+    .catch((error) => console.error(error))
   }
 
   function handleSubmit(event) {
