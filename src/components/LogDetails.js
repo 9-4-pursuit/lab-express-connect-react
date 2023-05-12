@@ -23,16 +23,17 @@ export default function LogDetails() {
   };
   
   return (
-    <article>
-      <h3>
-        {log.mistakesWereMadeToday ? <span>💥</span> : null} {log.captainName}
-      </h3>
-      <h4>{log.title}</h4>
-      <p>{log.post}</p>
-      <div className="showNavigation">
+    <div>
+      <article>
+        <h2>{log.title} - By {log.captainName}</h2>
+        <h4>{log.post}</h4>
+        <p>Days since last crisis: {log.daysSinceLastCrisis}</p>
+      </article>
+
+      <aside>
         <div>
           {" "}
-          <Link to={`/logs`}>
+          <Link to='/logs'>
             <button>Back</button>
           </Link>
         </div>
@@ -46,7 +47,7 @@ export default function LogDetails() {
           {" "}
           <button onClick={handleDelete}>Delete</button>
         </div>
-      </div>
-    </article>
-  );
+      </aside>
+    </div>
+  )
 }
